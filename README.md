@@ -1,7 +1,6 @@
 # 📊 Quant Copilot
 
 > **AI debugging copilot for crypto trading bots.**
-> Built for the **Bitget AI Hackathon Genesis S1** · Track: *Trading Infrastructure* · Theme: *KI × Krypto*
 
 [![Tests](https://img.shields.io/badge/tests-39%2F39-brightgreen)](tests/)
 [![Python](https://img.shields.io/badge/python-3.11+-blue)](https://www.python.org)
@@ -16,9 +15,8 @@ Every quant developer has lived through this:
 
 - Bot trades overnight, loses money, and you don't know why
 - A bug fires the same trade 200 times in a row
-- Bitget API rate limits silently throttle your strategy
+- API rate limits silently throttle your strategy
 - Drawdowns hit double digits before you notice
-- A position is opened twice because nobody checked `has_position` first
 
 Existing tools give you **monitoring** ("your bot is down"). They don't tell you **why** or **how to fix it**, and they don't put a hard gate between your strategy and the order book.
 
@@ -32,7 +30,7 @@ Existing tools give you **monitoring** ("your bot is down"). They don't tell you
 4. 🛡️ **Blocks** bad trades *before* they reach Bitget via a YAML risk policy
 5. 🔌 **Plugs into Bitget** with a v2-signed REST adapter so the same risk engine guards live orders
 
-The "AI × Crypto" theme: an AI that watches your AI — and a hard risk gate that stands between it and the exchange.
+The "AI × Crypto" theme: an AI that watches your AI.
 
 ---
 
@@ -339,37 +337,6 @@ No LLM API key required for the base system. No exchange API key required for th
 
 ---
 
-## 📜 Verifiable Usage Records
-
-The Bitget AI Hackathon submission form requires **at least one form of
-verifiable usage record**. Quant Copilot ships with nine of them under
-`logs/`, each regeneratable:
-
-* `pytest-2026-06-24.txt` — the 39-test run on a fresh venv
-* `sample-api-io.json` / `.md` — five Bitget v2 round-trips with full request/response
-* `live-bitget-server-time.txt` — a real HTTP call to `api.bitget.com/api/v2/public/time`
-* `dashboard-api-trace.json` / `.txt` — three real HTTP calls against the FastAPI dashboard
-* `risk-engine-checks.json` — five pre-trade verdicts (allow, oversized, blacklist, over-exposure, over-equity-pct)
-* `anomalies.json` — 12 anomalies from a real demo-bot log replay
-* `demo-bot-run-2026-06-24.log` — a real 35-second run of the demo bot
-
-See [`docs/verifiable-usage-records.md`](docs/verifiable-usage-records.md) for the
-full list and reproduction commands.
-
----
-
-## 🎬 Hackathon Submission Notes
-
-- **Track:** Trading Infrastructure (Developer Category)
-- **Theme fit:** "KI × Krypto" — the AI watches your crypto trading bot
-- **Demo length:** 90 seconds
-- **Demo flow:** open dashboard → start demo bot → watch copilot catch the bug → read AI diagnosis → see risk block fire → (optional) hit `/api/check-trade` with an oversized order and watch the dashboard reject it
-- **Why we win:** every quant dev has lost sleep to a mystery bug. Quant Copilot is the dev tool that fixes that — and ships with a real Bitget adapter so the same risk engine guards live orders.
-
-See [`SUBMISSION.md`](SUBMISSION.md) for the ready-to-paste submission form text.
-
----
-
 ## 📜 License
 
 MIT — see [`LICENSE`](LICENSE) file.
@@ -378,4 +345,4 @@ MIT — see [`LICENSE`](LICENSE) file.
 
 ## 👤 Author
 
-Built by [hasbunallah01](https://github.com/hasbunallah01) for the Bitget AI Hackathon Genesis S1.
+Built by [hasbunallah01](https://github.com/hasbunallah01).

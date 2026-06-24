@@ -429,7 +429,7 @@ INDEX_HTML = """<!DOCTYPE html>
 </div>
 
 <div class="footer">
-  Quant Copilot v0.2.0 · Bitget AI Hackathon Genesis S1 · Theme: KI × Krypto · <a href="https://github.com/hasbunallah01/quant-copilot" style="color:var(--accent);">github.com/hasbunallah01/quant-copilot</a>
+  Quant Copilot v0.2.0 · <a href="https://github.com/hasbunallah01/quant-copilot" style="color:var(--accent);">github.com/hasbunallah01/quant-copilot</a>
 </div>
 
 <script>
