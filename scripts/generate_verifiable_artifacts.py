@@ -100,16 +100,17 @@ SAMPLE_API_IO = {
             "name": "Spot tickers (used for live price feeds / slippage tracking)",
             "request": {
                 "method": "GET",
-                "url": "https://api.bitget.com/api/v2/market/tickers?productType=SPOT",
+                "url": "https://api.bitget.com/api/v2/spot/market/tickers",
                 "headers": {"Content-Type": "application/json"},
                 "body": None,
             },
             "response": {
                 "code": "00000", "msg": "success",
                 "data": [
-                    {"symbol": "BTCUSDT", "lastPr": "65000.10",
-                     "bidPr": "65000.00", "askPr": "65000.20",
-                     "quoteVolume": "1234567890.12", "usdtVolume": "80234901350.0"},
+                    {"symbol": "BTCUSDT", "lastPr": "59656.99",
+                     "bidPr": "59625.00", "askPr": "59625.01",
+                     "quoteVolume": "478760906.82", "usdtVolume": "478760906.82",
+                     "high24h": "63407.88", "low24h": "59105.71"},
                     {"symbol": "ETHUSDT", "lastPr": "3200.55",
                      "bidPr": "3200.50", "askPr": "3200.60",
                      "quoteVolume": "654321098.76", "usdtVolume": "2093878500.0"},
@@ -117,19 +118,18 @@ SAMPLE_API_IO = {
             },
         },
         {
-            "name": "OHLCV candles (granularity 1m)",
+            "name": "OHLCV candles (granularity 1min)",
             "request": {
                 "method": "GET",
-                "url": "https://api.bitget.com/api/v2/market/candles?symbol=BTCUSDT&productType=SPOT&granularity=1m&limit=3",
+                "url": "https://api.bitget.com/api/v2/spot/market/candles?symbol=BTCUSDT&granularity=1min&limit=2",
                 "headers": {"Content-Type": "application/json"},
                 "body": None,
             },
             "response": {
                 "code": "00000", "msg": "success",
                 "data": [
-                    ["1720000050000", "65000.10", "65050.00", "64980.00", "65040.00", "12.345"],
-                    ["1720000040000", "65040.00", "65045.00", "64950.00", "65000.10", "9.876"],
-                    ["1720000030000", "65000.10", "65060.00", "64900.00", "65040.00", "15.123"],
+                    ["1782327660000", "59661.44", "59671.84", "59632.53", "59632.54", "3.174624"],
+                    ["1782327720000", "59632.54", "59632.54", "59621.85", "59630.13", "0.088601"],
                 ],
             },
         },

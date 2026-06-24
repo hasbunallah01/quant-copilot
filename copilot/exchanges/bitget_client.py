@@ -262,31 +262,47 @@ class BitgetClient:
         return self._request("GET", "/api/v2/public/time")
 
     def get_tickers(self, product_type: str = "SPOT", symbol: Optional[str] = None) -> list[dict]:
-        """`GET /api/v2/market/tickers` - list of tickers for a product type."""
-        params: dict = {"productType": product_type}
+        """`GET /api/v2/spot/market/tickers` - list of spot tickers.
+
+        `product_type` is accepted for API symmetry but Bitget's v2 routes
+        spot tickers under `/spot/...` regardless. Pass `symbol` to narrow
+        the result set server-side.
+        """
+        params: dict = {}
         if symbol:
             params["symbol"] = symbol
-        data = self._request("GET", "/api/v2/market/tickers", params=params)
+        data = self._request("GET", "/api/v2/spot/market/tickers", params=params)
         return data if isinstance(data, list) else []
 
     def get_candles(
         self,
         symbol: str,
-        granularity: str = "1m",
+        granularity: str = "1min",
         product_type: str = "SPOT",
         limit: int = 100,
     ) -> list[dict]:
-        """`GET /api/v2/market/candles` - OHLCV candles.
+        """`GET /api/v2/spot/market/candles` - OHLCV candles.
 
-        granularity examples: "1m", "5m", "15m", "1h", "4h", "1d".
+        Bitget's v2 candles endpoint accepts these granularities:
+        `1min`, `3min`, `5min`, `15min`, `30min`, `1h`, `4h`, `6h`,
+        `12h`, `1day`, `1week`, `1M`, `6Hutc`, `12Hutc`, `1Dutc`,
+        `3Dutc`, `1Wutc`, `1Mutc`.
+
+        The client accepts short aliases (`1m`, `5m`, `15m`, `1h`, `1d`,
+        `1w`) and translates them to Bitget's long form.
         """
+        granularity_map = {
+            "1m": "1min", "3m": "3min", "5m": "5min", "15m": "15min",
+            "30m": "30min", "1h": "1h", "4h": "4h", "6h": "6h",
+            "12h": "12h", "1d": "1day", "1w": "1week",
+        }
+        g = granularity_map.get(granularity, granularity)
         params = {
             "symbol": symbol,
-            "productType": product_type,
-            "granularity": granularity,
+            "granularity": g,
             "limit": str(min(max(limit, 1), 1000)),
         }
-        data = self._request("GET", "/api/v2/market/candles", params=params)
+        data = self._request("GET", "/api/v2/spot/market/candles", params=params)
         return data if isinstance(data, list) else []
 
     # ---- signed endpoints ------------------------------------------------

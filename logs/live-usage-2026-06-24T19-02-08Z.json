@@ -1,0 +1,693 @@
+{
+  "session_id": "8cd00d513f65",
+  "started_at": "2026-06-24T19:02:08.576500+00:00",
+  "ended_at": "2026-06-24T19:02:27.527673+00:00",
+  "duration_seconds": 18.95,
+  "summary": {
+    "total_records": 32,
+    "dashboard_http_calls": 9,
+    "demo_bot_ticks": 9,
+    "bitget_runner_calls": 8,
+    "bitget_live_api_calls": 3
+  },
+  "records": [
+    {
+      "ts": "2026-06-24T19:02:08.683722+00:00",
+      "kind": "GET /",
+      "session_id": "8cd00d513f65",
+      "request": {
+        "method": "GET",
+        "url": "http://127.0.0.1:42663/"
+      },
+      "response": {
+        "status": 200,
+        "body_kind": "html",
+        "snippet": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"UTF-8\" />\n<title>Quant Copilot \u2014 Live Dashboard</title>\n<meta nam..."
+      }
+    },
+    {
+      "ts": "2026-06-24T19:02:08.684954+00:00",
+      "kind": "GET /api/status",
+      "session_id": "8cd00d513f65",
+      "request": {
+        "method": "GET",
+        "url": "http://127.0.0.1:42663/api/status"
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "status": "idle",
+          "log_count": 0,
+          "anomaly_count": 0,
+          "kill_switch_active": false,
+          "open_positions": {},
+          "current_equity": 10000.0,
+          "peak_equity": 10000.0
+        }
+      }
+    },
+    {
+      "ts": "2026-06-24T19:02:08.686112+00:00",
+      "kind": "GET /api/logs",
+      "session_id": "8cd00d513f65",
+      "request": {
+        "method": "GET",
+        "url": "http://127.0.0.1:42663/api/logs"
+      },
+      "response": {
+        "status": 200,
+        "body_keys": [
+          "events"
+        ],
+        "event_count": 0
+      }
+    },
+    {
+      "ts": "2026-06-24T19:02:08.689340+00:00",
+      "kind": "GET /api/anomalies",
+      "session_id": "8cd00d513f65",
+      "request": {
+        "method": "GET",
+        "url": "http://127.0.0.1:42663/api/anomalies"
+      },
+      "response": {
+        "status": 200,
+        "body_keys": [
+          "anomalies"
+        ],
+        "anomaly_count": 0
+      }
+    },
+    {
+      "ts": "2026-06-24T19:02:08.691913+00:00",
+      "kind": "POST /api/check-trade (small)",
+      "session_id": "8cd00d513f65",
+      "request": {
+        "method": "POST",
+        "url": "http://127.0.0.1:42663/api/check-trade",
+        "json": {
+          "symbol": "BTC/USDT",
+          "side": "BUY",
+          "quantity": 0.001,
+          "price": 50000,
+          "account_equity": 10000
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "allowed": true,
+          "reason": "",
+          "rule_violated": null
+        }
+      }
+    },
+    {
+      "ts": "2026-06-24T19:02:08.693302+00:00",
+      "kind": "POST /api/check-trade (oversized)",
+      "session_id": "8cd00d513f65",
+      "request": {
+        "method": "POST",
+        "url": "http://127.0.0.1:42663/api/check-trade",
+        "json": {
+          "symbol": "BTC/USDT",
+          "side": "BUY",
+          "quantity": 1.0,
+          "price": 50000,
+          "account_equity": 10000
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "allowed": false,
+          "reason": "Order notional 50000.00 USDT exceeds max position size of 1000.00 USDT",
+          "rule_violated": "max_position_size"
+        }
+      }
+    },
+    {
+      "ts": "2026-06-24T19:02:08.697428+00:00",
+      "kind": "POST /api/check-trade (blacklisted)",
+      "session_id": "8cd00d513f65",
+      "request": {
+        "method": "POST",
+        "url": "http://127.0.0.1:42663/api/check-trade",
+        "json": {
+          "symbol": "SCAM/USDT",
+          "side": "BUY",
+          "quantity": 0.001,
+          "price": 1,
+          "account_equity": 10000
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "allowed": false,
+          "reason": "Symbol SCAM/USDT is on the blocklist",
+          "rule_violated": "blocked_symbols"
+        }
+      }
+    },
+    {
+      "ts": "2026-06-24T19:02:08.698595+00:00",
+      "kind": "POST /api/check-trade (kill switch)",
+      "session_id": "8cd00d513f65",
+      "request": {
+        "method": "POST",
+        "url": "http://127.0.0.1:42663/api/check-trade",
+        "json": {
+          "symbol": "BTC/USDT",
+          "side": "BUY",
+          "quantity": 0.001,
+          "price": 50000,
+          "account_equity": 10000
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "allowed": false,
+          "reason": "Kill switch active: drawdown exceeded threshold. Manual review required to reset.",
+          "rule_violated": "kill_switch_drawdown"
+        }
+      }
+    },
+    {
+      "ts": "2026-06-24T19:02:08.699628+00:00",
+      "kind": "POST /api/reset-kill-switch",
+      "session_id": "8cd00d513f65",
+      "request": {
+        "method": "POST",
+        "url": "http://127.0.0.1:42663/api/reset-kill-switch",
+        "json": {}
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "ok": true,
+          "kill_switch_active": false
+        }
+      }
+    },
+    {
+      "ts": "2026-06-24T19:02:08.705016+00:00",
+      "kind": "demo_bot tick -> POST /api/check-trade",
+      "session_id": "8cd00d513f65",
+      "request": {
+        "tick": 1,
+        "symbol": "BTC/USDT",
+        "side": "BUY",
+        "quantity": 0.007692,
+        "price": 65000,
+        "account_equity": 10000.0
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "allowed": true,
+          "reason": "",
+          "rule_violated": null
+        }
+      }
+    },
+    {
+      "ts": "2026-06-24T19:02:10.708874+00:00",
+      "kind": "demo_bot tick -> POST /api/check-trade",
+      "session_id": "8cd00d513f65",
+      "request": {
+        "tick": 2,
+        "symbol": "BTC/USDT",
+        "side": "BUY",
+        "quantity": 0.007692,
+        "price": 65000,
+        "account_equity": 9995.0
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "allowed": false,
+          "reason": "2 identical BUY BTC/USDT trades in last 60s (limit 2) - likely infinite loop",
+          "rule_violated": "max_identical_trades_per_minute"
+        }
+      }
+    },
+    {
+      "ts": "2026-06-24T19:02:12.712975+00:00",
+      "kind": "demo_bot tick -> POST /api/check-trade",
+      "session_id": "8cd00d513f65",
+      "request": {
+        "tick": 3,
+        "symbol": "BTC/USDT",
+        "side": "BUY",
+        "quantity": 0.007692,
+        "price": 65000,
+        "account_equity": 9990.0
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "allowed": false,
+          "reason": "2 identical BUY BTC/USDT trades in last 60s (limit 2) - likely infinite loop",
+          "rule_violated": "max_identical_trades_per_minute"
+        }
+      }
+    },
+    {
+      "ts": "2026-06-24T19:02:14.717079+00:00",
+      "kind": "demo_bot tick -> POST /api/check-trade",
+      "session_id": "8cd00d513f65",
+      "request": {
+        "tick": 4,
+        "symbol": "BTC/USDT",
+        "side": "BUY",
+        "quantity": 0.007692,
+        "price": 65000,
+        "account_equity": 9985.0
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "allowed": false,
+          "reason": "2 identical BUY BTC/USDT trades in last 60s (limit 2) - likely infinite loop",
+          "rule_violated": "max_identical_trades_per_minute"
+        }
+      }
+    },
+    {
+      "ts": "2026-06-24T19:02:16.720769+00:00",
+      "kind": "demo_bot tick -> POST /api/check-trade",
+      "session_id": "8cd00d513f65",
+      "request": {
+        "tick": 5,
+        "symbol": "BTC/USDT",
+        "side": "BUY",
+        "quantity": 0.007692,
+        "price": 65000,
+        "account_equity": 9980.0
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "allowed": false,
+          "reason": "2 identical BUY BTC/USDT trades in last 60s (limit 2) - likely infinite loop",
+          "rule_violated": "max_identical_trades_per_minute"
+        }
+      }
+    },
+    {
+      "ts": "2026-06-24T19:02:18.724517+00:00",
+      "kind": "demo_bot tick -> POST /api/check-trade",
+      "session_id": "8cd00d513f65",
+      "request": {
+        "tick": 6,
+        "symbol": "BTC/USDT",
+        "side": "BUY",
+        "quantity": 0.007692,
+        "price": 65000,
+        "account_equity": 9975.0
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "allowed": false,
+          "reason": "2 identical BUY BTC/USDT trades in last 60s (limit 2) - likely infinite loop",
+          "rule_violated": "max_identical_trades_per_minute"
+        }
+      }
+    },
+    {
+      "ts": "2026-06-24T19:02:20.728167+00:00",
+      "kind": "demo_bot tick -> POST /api/check-trade",
+      "session_id": "8cd00d513f65",
+      "request": {
+        "tick": 7,
+        "symbol": "BTC/USDT",
+        "side": "BUY",
+        "quantity": 0.007692,
+        "price": 65000,
+        "account_equity": 9970.0
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "allowed": false,
+          "reason": "2 identical BUY BTC/USDT trades in last 60s (limit 2) - likely infinite loop",
+          "rule_violated": "max_identical_trades_per_minute"
+        }
+      }
+    },
+    {
+      "ts": "2026-06-24T19:02:22.732298+00:00",
+      "kind": "demo_bot tick -> POST /api/check-trade",
+      "session_id": "8cd00d513f65",
+      "request": {
+        "tick": 8,
+        "symbol": "BTC/USDT",
+        "side": "BUY",
+        "quantity": 0.007692,
+        "price": 65000,
+        "account_equity": 9965.0
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "allowed": false,
+          "reason": "2 identical BUY BTC/USDT trades in last 60s (limit 2) - likely infinite loop",
+          "rule_violated": "max_identical_trades_per_minute"
+        }
+      }
+    },
+    {
+      "ts": "2026-06-24T19:02:24.736410+00:00",
+      "kind": "demo_bot tick -> POST /api/check-trade",
+      "session_id": "8cd00d513f65",
+      "request": {
+        "tick": 9,
+        "symbol": "BTC/USDT",
+        "side": "BUY",
+        "quantity": 0.007692,
+        "price": 65000,
+        "account_equity": 9960.0
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "allowed": false,
+          "reason": "2 identical BUY BTC/USDT trades in last 60s (limit 2) - likely infinite loop",
+          "rule_violated": "max_identical_trades_per_minute"
+        }
+      }
+    },
+    {
+      "ts": "2026-06-24T19:02:26.738088+00:00",
+      "kind": "post-run GET /api/status",
+      "session_id": "8cd00d513f65",
+      "request": {
+        "path": "/api/status"
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "status": "idle",
+          "log_count": 0,
+          "anomaly_count": 0,
+          "kill_switch_active": false,
+          "open_positions": {
+            "BTC/USDT": 549.98
+          },
+          "current_equity": 8000,
+          "peak_equity": 8000
+        }
+      }
+    },
+    {
+      "ts": "2026-06-24T19:02:26.739259+00:00",
+      "kind": "post-run GET /api/logs",
+      "session_id": "8cd00d513f65",
+      "request": {
+        "path": "/api/logs"
+      },
+      "response": {
+        "status": 200,
+        "event_count": 0
+      }
+    },
+    {
+      "ts": "2026-06-24T19:02:26.740276+00:00",
+      "kind": "post-run GET /api/anomalies",
+      "session_id": "8cd00d513f65",
+      "request": {
+        "path": "/api/anomalies"
+      },
+      "response": {
+        "status": 200,
+        "anomaly_count": 0,
+        "types": []
+      }
+    },
+    {
+      "ts": "2026-06-24T19:02:26.742352+00:00",
+      "kind": "BitgetBotRunner.evaluate: small BUY (allow)",
+      "session_id": "8cd00d513f65",
+      "request": {
+        "symbol": "BTCUSDT",
+        "side": "BUY",
+        "quantity": 0.001,
+        "price": 50000
+      },
+      "response": {
+        "allowed": true,
+        "rule_violated": null,
+        "reason": ""
+      }
+    },
+    {
+      "ts": "2026-06-24T19:02:26.743498+00:00",
+      "kind": "BitgetBotRunner mirrors decision to dashboard: small BUY (allow)",
+      "session_id": "8cd00d513f65",
+      "request": {
+        "method": "POST",
+        "url": "http://127.0.0.1:42663/api/check-trade",
+        "json": {
+          "symbol": "BTC/USDT",
+          "side": "BUY",
+          "quantity": 0.001,
+          "price": 50000
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "allowed": false,
+          "reason": "2 identical BUY BTC/USDT trades in last 60s (limit 2) - likely infinite loop",
+          "rule_violated": "max_identical_trades_per_minute"
+        }
+      }
+    },
+    {
+      "ts": "2026-06-24T19:02:26.743543+00:00",
+      "kind": "BitgetBotRunner.place: small BUY (allow)",
+      "session_id": "8cd00d513f65",
+      "request": {
+        "symbol": "BTCUSDT",
+        "side": "BUY",
+        "quantity": 0.001,
+        "price": 50000
+      },
+      "response": {
+        "submitted": true,
+        "allowed": true,
+        "order_response": {
+          "simulated": true,
+          "symbol": "BTCUSDT",
+          "side": "BUY",
+          "size": "0.001",
+          "price": "50000"
+        }
+      }
+    },
+    {
+      "ts": "2026-06-24T19:02:26.743556+00:00",
+      "kind": "BitgetBotRunner.evaluate: medium BUY (allow)",
+      "session_id": "8cd00d513f65",
+      "request": {
+        "symbol": "ETHUSDT",
+        "side": "BUY",
+        "quantity": 0.05,
+        "price": 3200
+      },
+      "response": {
+        "allowed": true,
+        "rule_violated": null,
+        "reason": ""
+      }
+    },
+    {
+      "ts": "2026-06-24T19:02:26.744655+00:00",
+      "kind": "BitgetBotRunner mirrors decision to dashboard: medium BUY (allow)",
+      "session_id": "8cd00d513f65",
+      "request": {
+        "method": "POST",
+        "url": "http://127.0.0.1:42663/api/check-trade",
+        "json": {
+          "symbol": "ETH/USDT",
+          "side": "BUY",
+          "quantity": 0.05,
+          "price": 3200
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "allowed": true,
+          "reason": "",
+          "rule_violated": null
+        }
+      }
+    },
+    {
+      "ts": "2026-06-24T19:02:26.744691+00:00",
+      "kind": "BitgetBotRunner.place: medium BUY (allow)",
+      "session_id": "8cd00d513f65",
+      "request": {
+        "symbol": "ETHUSDT",
+        "side": "BUY",
+        "quantity": 0.05,
+        "price": 3200
+      },
+      "response": {
+        "submitted": true,
+        "allowed": true,
+        "order_response": {
+          "simulated": true,
+          "symbol": "ETHUSDT",
+          "side": "BUY",
+          "size": "0.05",
+          "price": "3200"
+        }
+      }
+    },
+    {
+      "ts": "2026-06-24T19:02:26.744702+00:00",
+      "kind": "BitgetBotRunner.evaluate: oversized BUY (block)",
+      "session_id": "8cd00d513f65",
+      "request": {
+        "symbol": "BTCUSDT",
+        "side": "BUY",
+        "quantity": 1.0,
+        "price": 50000
+      },
+      "response": {
+        "allowed": false,
+        "rule_violated": "max_position_size",
+        "reason": "Order notional 50000.00 USDT exceeds max position size of 1000.00 USDT"
+      }
+    },
+    {
+      "ts": "2026-06-24T19:02:26.744714+00:00",
+      "kind": "BitgetBotRunner.evaluate: blacklist BUY (block)",
+      "session_id": "8cd00d513f65",
+      "request": {
+        "symbol": "SCAMUSDT",
+        "side": "BUY",
+        "quantity": 0.001,
+        "price": 1
+      },
+      "response": {
+        "allowed": false,
+        "rule_violated": "blocked_symbols",
+        "reason": "Symbol SCAM/USDT is on the blocklist"
+      }
+    },
+    {
+      "ts": "2026-06-24T19:02:26.957347+00:00",
+      "kind": "Bitget live call: GET /api/v2/public/time",
+      "session_id": "8cd00d513f65",
+      "request": {
+        "method": "GET",
+        "url": "<see BitgetClient>",
+        "endpoint": "/api/v2/public/time"
+      },
+      "response": {
+        "status": "ok",
+        "latency_ms": 212.5,
+        "data_sample": {
+          "serverTime": "1782327746875"
+        },
+        "data_len": "n/a"
+      }
+    },
+    {
+      "ts": "2026-06-24T19:02:27.209639+00:00",
+      "kind": "Bitget live call: GET /api/v2/market/tickers?productType=SPOT",
+      "session_id": "8cd00d513f65",
+      "request": {
+        "method": "GET",
+        "url": "<see BitgetClient>",
+        "endpoint": "/api/v2/market/tickers?productType=SPOT"
+      },
+      "response": {
+        "status": "ok",
+        "latency_ms": 252.3,
+        "data_sample": [
+          {
+            "open": "0.1231",
+            "symbol": "LUMIAUSDT",
+            "high24h": "0.1298",
+            "low24h": "0.1128",
+            "lastPr": "0.1157",
+            "quoteVolume": "19323.87",
+            "baseVolume": "157536.62",
+            "usdtVolume": "19323.866536",
+            "ts": "1782327746028",
+            "bidPr": "0.1158",
+            "askPr": "0.116",
+            "bidSz": "1753.59",
+            "askSz": "46.13",
+            "openUtc": "0.1283",
+            "changeUtc24h": "-0.09821",
+            "change24h": "-0.06011"
+          },
+          {
+            "open": "0.01269",
+            "symbol": "GOATUSDT",
+            "high24h": "0.0131",
+            "low24h": "0.01176",
+            "lastPr": "0.01201",
+            "quoteVolume": "31465.37",
+            "baseVolume": "2500573.81",
+            "usdtVolume": "31465.3636395",
+            "ts": "1782327745391",
+            "bidPr": "0.01203",
+            "askPr": "0.01205",
+            "bidSz": "750",
+            "askSz": "18296.44",
+            "openUtc": "0.01274",
+            "changeUtc24h": "-0.0573",
+            "change24h": "-0.05359"
+          }
+        ],
+        "data_len": 1167
+      }
+    },
+    {
+      "ts": "2026-06-24T19:02:27.391769+00:00",
+      "kind": "Bitget live call: GET /api/v2/market/candles?symbol=BTCUSDT&granularity=1m&limit=2",
+      "session_id": "8cd00d513f65",
+      "request": {
+        "method": "GET",
+        "url": "<see BitgetClient>",
+        "endpoint": "/api/v2/market/candles?symbol=BTCUSDT&granularity=1m&limit=2"
+      },
+      "response": {
+        "status": "ok",
+        "latency_ms": 182.1,
+        "data_sample": [
+          [
+            "1782327660000",
+            "59661.44",
+            "59671.84",
+            "59632.53",
+            "59632.54",
+            "3.174624",
+            "189369.17243714",
+            "189369.17243714"
+          ],
+          [
+            "1782327720000",
+            "59632.54",
+            "59646.83",
+            "59621.85",
+            "59630",
+            "2.972801",
+            "177301.3520703",
+            "177301.3520703"
+          ]
+        ],
+        "data_len": 2
+      }
+    }
+  ]
+}
