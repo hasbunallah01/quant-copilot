@@ -1,0 +1,50 @@
+{
+  "label": "Small BTC trade (should ALLOW)",
+  "request": {
+    "symbol": "BTC/USDT",
+    "side": "BUY",
+    "quantity": 0.001,
+    "price": 50000,
+    "account_equity": 10000
+  },
+  "status": 200,
+  "response": {
+    "allowed": true,
+    "reason": "",
+    "rule_violated": null
+  }
+}
+{
+  "label": "Oversized BTC trade (should BLOCK)",
+  "request": {
+    "symbol": "BTC/USDT",
+    "side": "BUY",
+    "quantity": 1.0,
+    "price": 50000,
+    "account_equity": 10000
+  },
+  "status": 200,
+  "response": {
+    "allowed": false,
+    "reason": "Order notional 50000.00 USDT exceeds max position size of 1000.00 USDT",
+    "rule_violated": "max_position_size"
+  }
+}
+{
+  "label": "Blacklisted symbol (should BLOCK)",
+  "request": {
+    "symbol": "SCAM/USDT",
+    "side": "BUY",
+    "quantity": 0.001,
+    "price": 1,
+    "account_equity": 10000
+  },
+  "status": 200,
+  "response": {
+    "allowed": false,
+    "reason": "Symbol SCAM/USDT is on the blocklist",
+    "rule_violated": "blocked_symbols"
+  }
+}
+
+Wrote logs/dashboard-api-trace.json
