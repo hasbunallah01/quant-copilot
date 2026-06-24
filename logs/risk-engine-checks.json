@@ -1,0 +1,80 @@
+{
+  "generated_at": "2026-06-24 18:47:01 UTC",
+  "checks": [
+    {
+      "case": "small trade, should ALLOW",
+      "request": {
+        "symbol": "BTC/USDT",
+        "side": "BUY",
+        "quantity": 0.001,
+        "price": 50000,
+        "account_equity": 10000
+      },
+      "verdict": {
+        "allowed": true,
+        "rule_violated": null,
+        "reason": ""
+      }
+    },
+    {
+      "case": "oversized, should BLOCK (max_position_size)",
+      "request": {
+        "symbol": "BTC/USDT",
+        "side": "BUY",
+        "quantity": 1.0,
+        "price": 50000,
+        "account_equity": 10000
+      },
+      "verdict": {
+        "allowed": false,
+        "rule_violated": "max_position_size",
+        "reason": "Order notional 50000.00 USDT exceeds max position size of 1000.00 USDT"
+      }
+    },
+    {
+      "case": "blacklisted, should BLOCK (blocked_symbols)",
+      "request": {
+        "symbol": "SCAM/USDT",
+        "side": "BUY",
+        "quantity": 0.001,
+        "price": 1,
+        "account_equity": 10000
+      },
+      "verdict": {
+        "allowed": false,
+        "rule_violated": "blocked_symbols",
+        "reason": "Symbol SCAM/USDT is on the blocklist"
+      }
+    },
+    {
+      "case": "exceeds total exposure, should BLOCK (max_total_exposure)",
+      "request": {
+        "symbol": "ETH/USDT",
+        "side": "BUY",
+        "quantity": 5.0,
+        "price": 3000,
+        "account_equity": 10000
+      },
+      "verdict": {
+        "allowed": false,
+        "rule_violated": "max_position_size",
+        "reason": "Order notional 15000.00 USDT exceeds max position size of 1000.00 USDT"
+      }
+    },
+    {
+      "case": "20% of equity at 25k notional, should BLOCK (max_order_pct_of_equity)",
+      "request": {
+        "symbol": "BTC/USDT",
+        "side": "BUY",
+        "quantity": 0.5,
+        "price": 50000,
+        "account_equity": 10000
+      },
+      "verdict": {
+        "allowed": false,
+        "rule_violated": "max_position_size",
+        "reason": "Order notional 25000.00 USDT exceeds max position size of 1000.00 USDT"
+      }
+    }
+  ]
+}

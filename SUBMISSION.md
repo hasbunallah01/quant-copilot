@@ -6,32 +6,33 @@ Copy-paste this into the Bitget submission form (Title + Description fields).
 
 ## Title
 
-**Quant Copilot — AI debugging copilot for crypto trading bots**
+**Quant Copilot — AI debugging copilot & risk-gated Bitget adapter for crypto trading bots**
 
 ## One-line tagline
 
-> The AI that watches your trading bot while you sleep.
+> The AI that watches your trading bot — and the risk gate that stands between it and Bitget.
 
 ## Category
 
 **Trading Infrastructure** (Developer Category)
 
-## Description (≈ 250 words)
+## Description (≈ 300 words)
 
-Every quant developer has lived through this: a bot trades overnight, bleeds money, and by morning you have no idea why. Existing monitoring tools tell you *that* something broke — they never tell you *why* or *how to fix it*.
+Every quant developer has lived through this: a bot trades overnight, bleeds money, and by morning you have no idea why. Existing monitoring tools tell you *that* something broke — they never tell you *why* or *how to fix it*, and they don't actually *block* the bad orders from reaching the exchange.
 
-**Quant Copilot** is an AI debugging copilot for crypto trading bots. It sits between your bot and the exchange, watching the log in real time, detecting anomalies, explaining them in plain English, and **blocking bad trades before they reach the order book**.
+**Quant Copilot** is the AI debugging copilot + risk-gated execution layer for crypto trading bots. It ships as an open-source Trading Infrastructure package built on Bitget v2.
 
 **What it does:**
 - 👀 **Watches** your bot's log file with a rotation-safe tail engine
-- 🚨 **Detects** 5 anomaly types: infinite trade loops, sudden drawdowns, API rate limits, slippage spikes, and runaway trade frequency
-- 🧠 **Diagnoses** each anomaly with a senior-dev-style breakdown — likely cause, where to look in your code, how to fix it, and how to prevent it happening again
-- 🛡️ **Blocks** risky orders via a YAML-based pre-trade risk policy (position size, drawdown kill-switch, rate limits, blacklist, etc.)
-- 📊 **Live dashboard** (FastAPI + WebSocket) shows everything in real time
+- 🚨 **Detects** 5 anomaly types: infinite trade loops, sudden drawdowns, API rate limits, slippage spikes, runaway trade frequency
+- 🧠 **Diagnoses** each anomaly with a senior-dev-style breakdown — likely cause, where to look, how to fix, and how to prevent it
+- 🛡️ **Blocks** risky orders via a YAML pre-trade risk policy (position size, drawdown kill-switch, rate limits, blacklist) — used by both the dashboard and the live Bitget adapter
+- 🔌 **Plugs into Bitget** with a minimal HMAC-signed v2 REST client + a `BitgetBotRunner` that runs every order through the same `RiskEngine`. Retry on 429/5xx with exponential backoff.
+- 📊 **Live dashboard** (FastAPI + WebSocket) shows logs, anomalies, AI diagnoses, and risk verdicts in real time
 
-**The 90-second demo:** start the dashboard, launch the included `demo_bot/bot.py` (it has a real-world bug — a missing position-state check), and watch the copilot catch the infinite loop in real time, generate an AI diagnosis, and block the third identical trade automatically.
+**The 90-second demo:** start the dashboard, launch `demo_bot/bot.py` (intentional bug: missing position-state check), and watch Quant Copilot catch the infinite loop, generate an AI diagnosis, and block the third identical trade via the risk engine.
 
-Built for the **KI × Krypto** theme: an AI that watches your AI.
+**Verifiable usage records** (9 artifacts under `logs/`): a real pytest run (39/39 passing), 5 Bitget v2 round-trips with full request/response, a live HTTP call to `api.bitget.com`, 3 live dashboard API calls, 5 pre-trade verdicts, anomaly replay output, and a real demo-bot run. See `docs/verifiable-usage-records.md`.
 
 **Repo:** https://github.com/hasbunallah01/quant-copilot
 
@@ -41,15 +42,24 @@ Built for the **KI × Krypto** theme: an AI that watches your AI.
 - FastAPI + WebSocket (dashboard)
 - PyYAML (risk policy)
 - Pydantic (request validation)
-- Watchdog (file events)
-- 10 passing smoke tests
+- Requests (Bitget v2 REST client + CoinGecko price feed)
+- 39 passing pytest tests (14 core + 15 Bitget adapter + 9 dashboard API + 1 e2e)
 - Zero paid dependencies (rule-based AI doctor included; LLM swap-in documented)
 
 ## Why this wins
 
-- **Solves a real, daily problem** for every quant developer, not a hypothetical one
-- **Production-quality code** — modular, tested, documented, type-hinted
-- **Works out of the box** — `pip install -r requirements.txt && python -m copilot.dashboard`
-- **Theme-perfect fit** — "KI × Krypto": AI debugging AI crypto trading
-- **Demo tells a story** — 90 seconds from "bot is fine" to "AI caught the bug, here's why, here's the fix"
-- **Extensible** — swap the rule-based doctor for an LLM in 5 lines
+- **Solves a real, daily problem** for every quant developer, not a hypothetical one.
+- **Production-quality code** — modular, tested (39/39), documented, type-hinted, MIT licensed.
+- **Works out of the box** — `pip install -r requirements.txt && pytest && python -m copilot.dashboard`.
+- **Bitget-native** — v2 HMAC signing, demo-trading header, rate-limit handling. Not a name-drop.
+- **Single source of truth for risk** — the same `RiskEngine` is consulted by the dashboard, the demo bot, and the live BitgetBotRunner.
+- **Verifiable usage records** — 9 artifacts under `logs/`, all regeneratable.
+- **Theme-perfect fit** — "KI × Krypto": AI debugging AI crypto trading.
+
+## Links
+
+- Repo: https://github.com/hasbunallah01/quant-copilot
+- Verifiable artifacts: `docs/verifiable-usage-records.md`
+- Architecture: `docs/architecture.md`
+- Risk engine spec: `docs/risk-engine.md`
+- Bitget integration: `docs/bitget-integration.md`

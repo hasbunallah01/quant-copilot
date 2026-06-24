@@ -1,0 +1,65 @@
+[2026-06-24 18:41:25] INFO Bot starting on BTC (demo mode with intentional bug)
+[2026-06-24 18:41:25] INFO Trade size: 500.0 USDT, tick interval: 3.0s
+[2026-06-24 18:41:25] INFO NOTE: This bot contains an intentional infinite-loop bug for the demo
+[2026-06-24 18:41:25] INFO --- Tick #1 ---
+[2026-06-24 18:41:25] INFO Current BTC price: $59,490.00
+[2026-06-24 18:41:25] INFO Signal: HOLD
+[2026-06-24 18:41:28] INFO --- Tick #2 ---
+[2026-06-24 18:41:28] INFO Current BTC price: $59,490.00
+[2026-06-24 18:41:28] INFO Signal: HOLD
+[2026-06-24 18:41:31] INFO --- Tick #3 ---
+[2026-06-24 18:41:31] WARN Price fetch failed for BTC, using offline fallback: 429 Client Error: Too Many Requests for url: https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd
+[2026-06-24 18:41:31] INFO Current BTC price: $65,000.00
+[2026-06-24 18:41:31] INFO Signal: BUY
+[2026-06-24 18:41:31] INFO BUY 0.007692 BTC at $65,000.00 (notional: 500.0 USDT)
+[2026-06-24 18:41:31] INFO Equity: 9994.50 USDT (drawdown: 0.06%)
+[2026-06-24 18:41:34] INFO --- Tick #4 ---
+[2026-06-24 18:41:34] INFO Current BTC price: $59,490.00
+[2026-06-24 18:41:34] INFO Signal: HOLD
+[2026-06-24 18:41:34] INFO Equity: 9994.50 USDT (drawdown: 0.06%)
+[2026-06-24 18:41:37] INFO --- Tick #5 ---
+[2026-06-24 18:41:37] INFO Current BTC price: $59,490.00
+[2026-06-24 18:41:37] INFO Signal: HOLD
+[2026-06-24 18:41:37] INFO Equity: 9994.50 USDT (drawdown: 0.06%)
+[2026-06-24 18:41:40] INFO --- Tick #6 ---
+[2026-06-24 18:41:40] WARN Price fetch failed for BTC, using offline fallback: 429 Client Error: Too Many Requests for url: https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd
+[2026-06-24 18:41:40] INFO Current BTC price: $65,000.00
+[2026-06-24 18:41:40] INFO Signal: BUY
+[2026-06-24 18:41:40] INFO BUY 0.007692 BTC at $65,000.00 (notional: 500.0 USDT)
+[2026-06-24 18:41:40] INFO Equity: 9989.00 USDT (drawdown: 0.11%)
+[2026-06-24 18:41:43] INFO --- Tick #7 ---
+[2026-06-24 18:41:43] WARN Price fetch failed for BTC, using offline fallback: 429 Client Error: Too Many Requests for url: https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd
+[2026-06-24 18:41:43] INFO Current BTC price: $65,000.00
+[2026-06-24 18:41:43] INFO Signal: BUY
+[2026-06-24 18:41:43] INFO BUY 0.007692 BTC at $65,000.00 (notional: 500.0 USDT)
+[2026-06-24 18:41:43] INFO Equity: 9983.50 USDT (drawdown: 0.17%)
+[2026-06-24 18:41:46] INFO --- Tick #8 ---
+[2026-06-24 18:41:46] WARN Price fetch failed for BTC, using offline fallback: 429 Client Error: Too Many Requests for url: https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd
+[2026-06-24 18:41:46] INFO Current BTC price: $65,000.00
+[2026-06-24 18:41:46] INFO Signal: BUY
+[2026-06-24 18:41:46] INFO BUY 0.007692 BTC at $65,000.00 (notional: 500.0 USDT)
+[2026-06-24 18:41:46] INFO Equity: 9978.00 USDT (drawdown: 0.22%)
+[2026-06-24 18:41:49] INFO --- Tick #9 ---
+[2026-06-24 18:41:49] WARN Price fetch failed for BTC, using offline fallback: 429 Client Error: Too Many Requests for url: https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd
+[2026-06-24 18:41:49] INFO Current BTC price: $65,000.00
+[2026-06-24 18:41:49] INFO Signal: BUY
+[2026-06-24 18:41:49] INFO BUY 0.007692 BTC at $65,000.00 (notional: 500.0 USDT)
+[2026-06-24 18:41:49] INFO Equity: 9972.50 USDT (drawdown: 0.27%)
+[2026-06-24 18:41:52] INFO --- Tick #10 ---
+[2026-06-24 18:41:52] WARN Price fetch failed for BTC, using offline fallback: 429 Client Error: Too Many Requests for url: https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd
+[2026-06-24 18:41:52] INFO Current BTC price: $65,000.00
+[2026-06-24 18:41:52] INFO Signal: BUY
+[2026-06-24 18:41:52] INFO BUY 0.007692 BTC at $65,000.00 (notional: 500.0 USDT)
+[2026-06-24 18:41:52] INFO Equity: 9967.00 USDT (drawdown: 0.33%)
+[2026-06-24 18:41:55] INFO --- Tick #11 ---
+[2026-06-24 18:41:55] WARN Price fetch failed for BTC, using offline fallback: 429 Client Error: Too Many Requests for url: https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd
+[2026-06-24 18:41:55] INFO Current BTC price: $65,000.00
+[2026-06-24 18:41:55] INFO Signal: BUY
+[2026-06-24 18:41:55] INFO BUY 0.007692 BTC at $65,000.00 (notional: 500.0 USDT)
+[2026-06-24 18:41:55] INFO Equity: 9961.50 USDT (drawdown: 0.39%)
+[2026-06-24 18:41:58] INFO --- Tick #12 ---
+[2026-06-24 18:41:58] WARN Price fetch failed for BTC, using offline fallback: 429 Client Error: Too Many Requests for url: https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd
+[2026-06-24 18:41:58] INFO Current BTC price: $65,000.00
+[2026-06-24 18:41:58] INFO Signal: BUY
+[2026-06-24 18:41:58] INFO BUY 0.007692 BTC at $65,000.00 (notional: 500.0 USDT)
+[2026-06-24 18:41:58] INFO Equity: 9956.00 USDT (drawdown: 0.44%)

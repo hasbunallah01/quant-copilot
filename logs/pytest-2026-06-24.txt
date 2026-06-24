@@ -1,0 +1,13 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.2, pytest-9.1.1, pluggy-1.6.0
+rootdir: /run/csi/mount-root/nas/eab0d61a99b6696edb3d2aff87b585e8/quant-copilot
+configfile: pytest.ini
+plugins: anyio-4.14.0
+collected 39 items
+
+tests/test_basic.py ..............                                       [ 35%]
+tests/test_bitget_client.py ...............                              [ 74%]
+tests/test_dashboard_api.py .........                                    [ 97%]
+tests/test_e2e_bot.py .                                                  [100%]
+
+============================== 39 passed in 0.80s ==============================

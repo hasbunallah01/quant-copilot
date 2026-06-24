@@ -17,14 +17,10 @@ env/
 ENV/
 .venv/
 
-# Environment variables
+# Environment variables (never commit secrets)
 .env
 .env.local
-
-# Logs and runtime data
-logs/*.log
-logs/*.json
-!logs/.gitkeep
+.env.*.local
 
 # IDE
 .vscode/
@@ -38,6 +34,15 @@ logs/*.json
 htmlcov/
 .coverage
 *.cover
+.cache/
 
 # OS
 Thumbs.db
+
+# Logs / runtime data:
+# - The dated verifiable artifacts (logs/*.json, logs/*.md, logs/*.txt)
+#   ARE tracked; they form the "verifiable usage records" for the
+#   Bitget AI Hackathon submission.
+# - The live `logs/demo.log` is the running demo bot's stream and is
+#   regenerated every run, so we ignore it.
+logs/demo.log

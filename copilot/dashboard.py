@@ -128,7 +128,7 @@ def on_log_line(line: str) -> None:
 app = FastAPI(
     title="Quant Copilot",
     description="AI debugging copilot for crypto trading bots",
-    version="0.1.0",
+    version="0.2.0",
 )
 
 
@@ -266,6 +266,7 @@ INDEX_HTML = """<!DOCTYPE html>
 <head>
 <meta charset="UTF-8" />
 <title>Quant Copilot — Live Dashboard</title>
+<meta name="description" content="Quant Copilot — AI debugging copilot for crypto trading bots. Built for the Bitget AI Hackathon Genesis S1." />
 <style>
   :root {
     --bg: #0b0d12;
@@ -428,7 +429,7 @@ INDEX_HTML = """<!DOCTYPE html>
 </div>
 
 <div class="footer">
-  Quant Copilot v0.1.0 · Bitget AI Hackathon Genesis S1 · Theme: KI × Krypto
+  Quant Copilot v0.2.0 · Bitget AI Hackathon Genesis S1 · Theme: KI × Krypto · <a href="https://github.com/hasbunallah01/quant-copilot" style="color:var(--accent);">github.com/hasbunallah01/quant-copilot</a>
 </div>
 
 <script>
