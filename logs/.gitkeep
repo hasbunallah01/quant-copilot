@@ -1,0 +1,2 @@
+# Log directory - keep this folder in git
+# Real .log files are gitignored (see .gitignore)
